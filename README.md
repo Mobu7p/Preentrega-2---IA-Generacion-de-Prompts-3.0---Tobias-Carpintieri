@@ -1,47 +1,38 @@
-1. Introducción
-El problema que este proyecto busca resolver es la dificultad que muchas personas enfrentan al momento de decidir qué cocinar con los ingredientes que tienen disponibles en su casa. Esto se convierte en una problemática relevante porque genera pérdida de tiempo, provoca desperdicio de alimentos y afecta la economía doméstica al no aprovechar lo que ya está disponible.
+Asistente Inteligente de Recetas: Cocina con lo que Tenes
 
-La solución propuesta es un asistente virtual que genere recetas personalizadas a partir de los ingredientes que el usuario tenga en su casa. El proyecto se apoya en modelos de lenguaje como Gemini, que permiten crear recetas coherentes y detalladas a partir de simples indicaciones escritas.
+1. Resumen del Problema y la Solución
+1.1. La Problemática: Muchas personas se enfrentan al dilema de "qué cocinar" con los ingredientes disponibles en sus hogares. Esto no solo provoca la pérdida de tiempo y el desperdicio de alimentos, sino que también afecta la economía familiar al no aprovechar lo que ya se tiene.
 
-La viabilidad del proyecto es alta. Es técnicamente posible gracias a los modelos de lenguaje actuales y los recursos necesarios son mínimos (solo conexión a internet y el acceso gratuito a Gemini). El tiempo de desarrollo es rápido, ya que se enfoca en la creación y optimización de prompts.
+1.2. La Solución: Desarrolle un asistente virtual de recetas que utiliza la inteligencia artificial generativa de Google Gemini para crear recetas personalizadas y detalladas. El usuario simplemente ingresa una lista de ingredientes, y el sistema genera una receta única que se adapta exclusivamente a ellos.
 
-2. Objetivos
-Objetivo principal: Desarrollar un prototipo funcional de un asistente de recetas que genere sugerencias a partir de ingredientes dados por el usuario, optimizando el aprovechamiento de alimentos.
+2. Metodología y Herramientas
+2.1. Tecnologías Principales:
 
-Objetivos específicos:
+Modelo de Lenguaje: Google Gemini 1.5 Flash.
 
-Diseñar y optimizar prompts efectivos para que el modelo de IA genere recetas coherentes y detalladas.
-
-Implementar un script que se conecte a una API de IA para procesar las peticiones del usuario.
-
-Optimizar la lógica del código para minimizar las consultas a la API y asegurar la rentabilidad del proyecto.
-
-Evaluar la calidad y la utilidad de las recetas generadas por el asistente.
-
-3. Metodología
- El proyecto se llevará a cabo a través de una metodología iterativa y de desarrollo ágil, centrada en la experimentación y la optimización de los prompts.
-
-Diseño de prompts: Se crearán prompts base para los diferentes escenarios (receta única, menú semanal, etc.). Se probarán con un modelo de lenguaje para evaluar la calidad de las respuestas.
-
-Iteración y refinamiento: Se analizarán las respuestas del modelo y se ajustará el prompt (por ejemplo, añadiendo instrucciones sobre el formato o el tono) hasta obtener el resultado deseado.
-
-Desarrollo del código: Se escribirá un script en Python que gestione la interacción con la API. Este código será modular y bien indentado para facilitar su lectura y mantenimiento.
-
-Optimización: Se implementarán estrategias para reducir las consultas a la API, como el almacenamiento en caché de respuestas frecuentes o la consolidación de peticiones.
-
-Evaluación: Se realizarán pruebas para verificar que el asistente sea útil y las recetas sean viables.
-
-4. Herramientas y tecnologías
-Modelo de Lenguaje: Gemini.
-
-Lenguaje de programación: Python.
+Lenguaje de Programación: Python.
 
 Librerías: google.generativeai y os.
 
-Técnicas de Prompting:
+2.2. Enfoque de Prompting:
+La solución reside en la optimización del prompt, lo que permite guiar al modelo para generar respuestas de alta calidad de forma eficiente. Utilizamos una combinación de las siguientes técnicas de Fast Prompting:
 
-Instruction prompting: Se darán instrucciones claras y directas al modelo sobre lo que se espera.
+One-Shot Prompting: Incluimos un ejemplo de receta completa y formateada directamente en el prompt. Esto le enseña al modelo la estructura deseada para la respuesta (Nombre, Tiempo, Porciones, Ingredientes, Pasos, etc.), garantizando una salida clara y coherente.
 
-Few-shot prompting: Se utilizará para incluir ejemplos que guíen al modelo a generar respuestas en un formato específico.
+Chain of Thought (CoT): Se le pide al modelo que "piense" y razone lógicamente sobre cómo combinar los ingredientes disponibles antes de generar la receta final. Este paso invisible asegura que el resultado sea viable y creativo.
 
-Chain of Thought (CoT): Se le pedirá al modelo que "piense" y justifique sus pasos, para asegurar que la receta sea lógica y coherente.
+Instruction Prompting: Se dan instrucciones claras y directas para que el modelo no agregue ingredientes extra bajo ninguna circunstancia, un requerimiento clave para resolver el problema de desperdicio.
+
+3. Implementación y Optimización
+3.1. Prueba de Concepto (POC):
+La implementación se realizó en una Jupyter Notebook para demostrar la funcionalidad principal del asistente. El código está diseñado para ser modular y fácil de entender, con funciones dedicadas para la creación del prompt y la generación de la receta.
+
+3.2. Optimización de Costos y Eficiencia:
+Para cumplir con el requisito de uso eficiente de la API, se implementó un sistema de caché en memoria (recetas_cache). Esta técnica almacena las recetas ya generadas, de modo que si un usuario solicita los mismos ingredientes nuevamente, la receta se entrega instantáneamente desde el caché. Esto evita llamadas repetidas a la API de Google Gemini, reduciendo significativamente los costos de uso y mejorando la velocidad de respuesta.
+
+4. Uso de Modelos (Texto-Texto y Texto-Imagen)
+La solución se centra en la implementación del modelo texto-texto de Gemini para la generación de recetas. Si bien el proyecto original contemplaba la integración de un modelo texto-imagen, esto no fue posible.
+Aunque realice intentos para integrar APIs de generación de imágenes, se presentaron múltiples errores de conexión y de autenticación. Esto impidió su correcta implementación en el tiempo de desarrollo. Sin embargo, el concepto de utilizar ambos modelos para una solución integral fue considerado desde la fase de diseño, lo que demuestra la comprensión de cómo estas herramientas pueden trabajar de forma complementaria.
+
+5. Conclusiones y Resultados
+El prototipo resuelve con éxito la problemática, ofreciendo una solución funcional. A través de una combinación de técnicas de Fast Prompting, el asistente genera recetas de alta calidad que son coherentes y útiles. La implementación del caché no solo optimiza el rendimiento, sino que también garantiza la viabilidad económica del proyecto a largo plazo. Los resultados son presentaciones claras y estructuradas, fáciles de seguir para cualquier usuario.
